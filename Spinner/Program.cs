@@ -60,6 +60,7 @@ namespace Spinner
                 var name = names[nCounter++];
                 var action = Actions[rand.Next(Actions.Length)];
 
+                //get slightly faster.
                 if (nCounter >= names.Length)
                 {
                     sleepMult -= 0.1;
@@ -77,19 +78,20 @@ namespace Spinner
                 synth.Speak(color);
 
                 //twister spinners have purple 'action' spots that the person spinning is supposed to choose the location and an action for the player to perform.
-                //we'll let Random decide the action as it regularly does, but tack on an action.
+                //we'll let Random decide the color/limb as it regularly does, and tack on an action.
                 
                 if (doAction)
                 {
                     synth.Rate = -3;
                     Thread.Sleep(250);
-                    synth.Speak(name);
+                    synth.Speak(action);
                 }
 
                 synth.Rate = -2;
                 Thread.Sleep(250);
                 synth.Speak(name);
 
+                //todo: variable extra time depending on the action
                 if (doAction)
                     Thread.Sleep((int)(7000 * sleepMult));
 
